@@ -1,0 +1,67 @@
+<div class="bg-light p-5 mt-4 container" *ngIf="cartData !=null ;else empty">
+
+<div>
+
+    <div class="d-flex justify-content-between">
+        <h3>Cart Shop</h3>
+        <button class="btn btn-info text-white" [routerLink]="['/checkout',cartData.data._id]" > Check out</button>
+    </div>
+
+
+    <div class="d-flex justify-content-between mt-3">
+    <span class="d-flex ">
+       <h4>Total Price: </h4>
+       <h3 class="text-main mx-2">{{cartData.data.totalCartPrice}}</h3>
+    </span>
+
+    <span class="d-flex ">
+       <h4>total number of items: </h4>
+       <h3 class="text-main mx-2">{{cartData.numOfCartItems}}</h3>
+    </span>
+    
+</div>
+
+
+<div *ngFor="let item of cartData.data.products" class="row border-bottom border-4 justify-content-between align-items-center">
+   
+    <div class="col-md-6">
+
+        <div class="row align-items-center my-3">
+            <div class="col-md-3">
+                <img [src]="item.product.imageCover" alt="" class="w-100">
+            </div>
+            <div class="col-md-9">
+                <h6>{{item.product.title}}</h6>
+                <p>{{item.price}}</p>
+                 <button (click)="deleteProduct(item.product._id)" class="btn btn-outline-danger" >
+                <i  class="fa-solid fa-trash-can "> </i>
+                Remove
+                </button> 
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-2">
+        <span (click)="updateQuantity( item.product._id,item.count + 1 )" class="btn btn-success"> + </span>
+        <span class="mx-3 fs-5">{{item.count}} </span>
+        <span (click)="updateQuantity( item.product._id,item.count - 1 )" class="btn btn-danger"> - </span>
+    </div>
+</div>
+
+</div>
+
+
+
+
+  
+
+    <button (click)="clearCart()" class="btn btn-outline-danger d-block m-auto mt-5"> Clear your Cart</button>
+</div>
+
+<ng-template #empty>
+    <div class="bg-light mt-5 py-5">
+       
+        <h1 class="mt-2 text-center"> your cart is empty</h1>
+    </div>
+</ng-template>

@@ -1,0 +1,43 @@
+
+
+
+
+
+
+<div class="row mt-5 align-items-center" *ngIf="details">
+ 
+  <div class="col-md-3">
+
+      <owl-carousel-o [options]="customOptions">
+
+        <ng-container *ngFor="let slide of details.images">
+          <ng-template carouselSlide>
+            <img [src]="slide"  >
+          </ng-template>
+        </ng-container>
+    
+      </owl-carousel-o>
+
+    </div>
+
+
+    <div class="col-md-9">
+        <h4>{{details.title |lowercase}} </h4>
+        <p>{{details.description}}</p>
+        <p> {{details.category.name}} </p>
+        <div class="d-flex justify-content-between">
+
+         <span> {{details.price |currency: 'EGP'}}  </span> 
+  
+            <span>
+              <i class="rating-color fa-solid fa-star"></i>
+              {{details.ratingsAverage}}
+            </span>
+          </div>
+          <p class="mt-2"> {{details.createdAt | date}} </p>
+          <button (click)="addCart(details._id)" class="btn btn-success w-100">  Add to cart</button>
+
+
+        </div>
+</div>
+

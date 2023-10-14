@@ -1,0 +1,67 @@
+
+
+<app-slider></app-slider>
+
+
+<div class="mt-5 py-5">
+<app-category-slider></app-category-slider>
+
+</div>
+
+<div class=" py-4">
+
+<input [(ngModel)]="searchVal" type="text" class="form-control my-5 w-75 mx-auto bg-body-tertiary" placeholder="Search..">
+
+
+  <div class="row g-3">
+   
+    <div  *ngFor="let product of productList |search:searchVal" class="col-lg-3 col-md-4 col-sm-6 ">
+     
+<div  class="product p-3" style="cursor: pointer;">
+
+      <div [routerLink]="['/productDetails',product._id]">
+        <img [src]="product.imageCover" class="w-100" alt="" />
+
+        <p class="text-main">{{ product.category.name }}</p>
+
+        <p>{{ product.title.split(" ").slice(0,2).join(" ") }}</p>
+
+        <div class="d-flex justify-content-between">
+
+          {{ product.price }} EGP
+
+          <span>
+            <i class="rating-color fa-solid fa-star"></i>
+
+            {{ product.ratingsAverage }}
+          </span>
+        </div>
+      
+      </div>
+      <button (click)="addCart(product._id)" class="btn btn-success w-75">  Add to cart</button>
+
+      <i *ngIf="!wishListData.includes($any(product._id))" (click)="addToWishList(product._id)" class="fa-solid fa-heart cursor-pointer fs-4 mx-2 mt-1"></i>
+      <i *ngIf="wishListData.includes($any(product._id))" (click)="removeFromWishList(product._id)" class="fa-solid fa-heart cursor-pointer fs-4 mx-2 mt-1 text-danger"></i>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<nav class="d-flex justify-content-center" aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link page1 cursor-pointer" >1</a></li>
+    <li class="page-item"><a class="page-link page1 cursor-pointer" >2</a></li>
+   
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

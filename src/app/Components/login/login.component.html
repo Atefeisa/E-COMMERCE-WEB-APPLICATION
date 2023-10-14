@@ -1,0 +1,46 @@
+<div class="py-5 mt-5">
+    <h3>Login Now:</h3>
+
+
+    <div *ngIf="errorMessage " class="alert alert-danger"> {{errorMessage}} </div>
+    <form (ngSubmit)="submitLogin(LoginForm)" [formGroup]="LoginForm">
+
+      
+        <div class="my-4">
+            <label for="email">email</label>
+            <input formControlName="email" type="email" name="email" class="form-control" id="email">
+
+            <div *ngIf="LoginForm.get('email')?.errors && LoginForm.get('email')?.touched"
+                class="alert alert-danger">
+
+                <p *ngIf="LoginForm.get('email')?.errors?.['required']">Email Required</p>
+                <p *ngIf="LoginForm.get('email')?.errors?.['email']">Email Not Valid</p>
+            </div>
+
+
+        </div>
+
+      
+        <div class="my-4">
+            <label for="password">password</label>
+            <input formControlName="password" type="password" name="password" class="form-control" id="password">
+
+            <div *ngIf="LoginForm.get('password')?.errors && LoginForm.get('password')?.touched"
+                class="alert alert-danger">
+
+                <p *ngIf="LoginForm.get('password')?.errors?.['required']">password Required</p>
+                <p *ngIf="LoginForm.get('password')?.errors?.['pattern']">password Not Valid</p>
+            </div>
+        </div>
+
+        <a routerLink="/forgetPassword" class=" fs-4 forget">forgetPassword ? </a>
+
+
+        <button *ngIf="!loading" [disabled]="!LoginForm.valid" type="submit"class="btn btn-success d-block ms-auto">
+            Login now
+        </button>
+        <button *ngIf="loading" type="button" class="btn btn-success d-block ms-auto">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+        </button>
+    </form>
+</div>

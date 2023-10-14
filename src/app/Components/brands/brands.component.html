@@ -1,0 +1,27 @@
+
+
+<h1 class="text-main text-center py-3">All Brands</h1>
+
+<div class="row g-4 mt-5 ">
+
+
+    <div *ngFor="let brands of brandsData" class="col-md-3 col-sm-4">
+    
+    <div class="rounded-3 border border-success  brand">
+    
+        <img class="w-100 img" [src]="brands.image" [alt]="brands.name">
+        <h4 class="text-center mt-2">{{brands.name}}</h4>
+    </div>
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </div>

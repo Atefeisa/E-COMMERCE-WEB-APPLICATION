@@ -1,0 +1,7 @@
+
+.brand{
+    overflow: hidden;
+}
+.brand:hover{
+    box-shadow:  rgba(8, 160, 89, 0.2) 0px 10px 10px -1px, rgba(8, 160, 89, 0.2) 0px 10px 10px -1px, rgba(8, 160, 89, 0.2) 0px 10px 10px -1px !important;
+}

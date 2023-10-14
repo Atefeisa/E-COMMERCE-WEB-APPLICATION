@@ -1,0 +1,41 @@
+<form class="mt-5" [formGroup]="shippingForm" (ngSubmit)="sendPayment(shippingForm)">
+
+    <div class="my-3">
+        <label for="detalis">detalis : </label>
+        <input formControlName="details" type="text" class="form-control" id="details">
+         <div *ngIf="shippingForm.get('details')?.errors && shippingForm.get('details')?.touched"
+            class="alert alert-danger">
+
+            <p *ngIf="shippingForm.get('details')?.errors?.['required']">details Required</p>
+        </div> 
+     </div>
+
+   
+    <div class="my-3">
+        <label for="city">city : </label>
+        <input formControlName="city" type="text"  class="form-control" id="city">
+
+        <div *ngIf="shippingForm.get('city')?.errors && shippingForm.get('city')?.touched"
+            class="alert alert-danger">
+
+            <p *ngIf="shippingForm.get('city')?.errors?.['required']">city Required</p>
+        </div>
+
+
+    </div>
+
+    <div class="my-3">
+        <label for="phone">phone : </label>
+        <input formControlName="phone" type="tel"  class="form-control" id="phone">
+
+        <div *ngIf="shippingForm.get('phone')?.errors && shippingForm.get('phone')?.touched"
+            class="alert alert-danger">
+
+            <p *ngIf="shippingForm.get('phone')?.errors?.['required']">phone Required</p>
+        </div>
+
+
+    </div>
+
+    <button class="btn btn-outline-info w-100 mt-5"> pay now</button>
+</form>
